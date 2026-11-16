@@ -1,0 +1,540 @@
+<!DOCTYPE html><html lang="uk"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVENTIS ONLINE</title>
+    <meta name="description" content="Aventis RP — найкращий український RolePlay проект. Реалістична карта України, унікальні системи, автопарк та голосовий чат. Приєднуйся до гри!">
+    <meta name="keywords" content="GTA, MTA, GTA San Andreas, GTA Ukraine, Aventis RP, RolePlay, RP, гта, мта, гта україна, український сервер, гра про україну, воля рп, ролеплей, український самп, ukraine gta, gta online, мта україна, скачать гта україна, грати в гта онлайн, мультиплеєр, самп, samp, ukrainegta, ukraine gta, укр гта, гта україна, vrp, врп">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/globals.css">
+    <link rel="icon" href="images/logg.svg" type="image/svg+xml">
+    <!-- Icons -->
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio"></script>
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .live-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #ff4d4d;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+        }
+    </style>
+
+    <style>
+        body {
+            background-color: #0D101C;
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background-color: rgba(13, 16, 28, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .logo-img { height: 35px; }
+        .logo-text {
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-link {
+            color: #9ca3af;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .nav-link:hover { color: #ffffff; }
+        .cta-button {
+            background-color: #d1d5db;
+            color: #111827;
+            padding: 8px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- CONTENT --- */
+        .main-wrapper { flex: 1; }
+        .content-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            gap: 80px;
+        }
+        .left-column {
+            flex: 0 0 30%;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+        .left-column h1 {
+            font-size: 42px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .right-column { flex: 1; }
+        .right-column p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #e5e7eb;
+        }
+
+        /* --- FOOTER (АДАПТАЦІЯ ПІД ОРИГІНАЛ) --- */
+        footer {
+            background-color: #06080f;
+            padding: 60px 0 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 60px;
+        }
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 250px 1fr 350px;
+            gap: 50px;
+            align-items: start;
+        }
+        .footer-logo-img { width: 140px; }
+
+        .footer-info-center {
+            display: flex;
+            gap: 60px;
+        }
+        .footer-column h3 {
+            color: #00A3FF; /* Яскраво-блакитний як на фото */
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .footer-column a, .footer-column p {
+            display: block;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+        .footer-column a:hover { color: #fff; }
+
+        /* Стилі соціальних кнопок як на скріншоті */
+        .social-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .social-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 12px 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .social-btn img { width: 22px; height: 22px; }
+
+        .footer-main-desc {
+            grid-column: 1 / -1;
+            color: #4b5563;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 40px;
+            max-width: 800px;
+        }
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 40px auto 0;
+            padding: 20px 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #4b5563;
+            font-size: 13px;
+        }
+
+        .problem-report {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 8px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #4b5563;
+        }
+
+        @media (max-width: 1100px) {
+            .footer-content { grid-template-columns: 1fr; gap: 30px; }
+            .footer-info-center { flex-wrap: wrap; gap: 30px; }
+            .social-links { grid-template-columns: 1fr; max-width: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.svg" alt="Aventis RP Logo" class="logo-img">
+            </div>
+            <div class="nav-links">
+                <a href="#" id="home-link" class="nav-link">
+                    <i data-lucide="home" class="nav-link-icon"></i>
+                    <span>Головна</span>
+                </a>
+                <a href="" class="nav-link js-show-unavailable-popup" target="_blank" rel="noopener noreferrer">
+                    <i data-lucide="messages-square" class="nav-link-icon"></i>
+                    <span>Форум</span>
+                </a>
+                <a href="#" class="nav-link js-show-unavailable-popup">
+                    <i data-lucide="store" class="nav-link-icon"></i>
+                    <span>Ігровий магазин</span>
+                </a>
+                <a href="#" class="nav-link js-show-unavailable-popup">
+                    <i data-lucide="book-open" class="nav-link-icon"></i>
+                    <span>WIKI</span>
+                </a>
+            </div>
+            <a href="cabinet/login.php" class="cta-button nav-btn js-show-unavailable-popup">
+                <i data-lucide="user"></i>
+                КАБІНЕТ
+            </a>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+        <div class="content-container">
+            <div class="left-column">
+                <h1>Політика<br>конфіденціа-<br>льності</h1>
+                <p style="color:#9ca3af; font-size: 14px;">м. Львів, редакція від<br>«01» травня 2026 року</p>
+            </div>
+
+            <div class="right-column">
+                <p>ПОЛІТИКА КОНФІДЕНЦІЙНОСТІ ТА ОБРОБКИ ПЕРСОНАЛЬНИХ ДАНИХ</p>
+                <p>онлайн-проєкту Aventis Online (RP)
+
+Ця Політика конфіденційності (далі — «Політика») є невід’ємною частиною Угоди користувача та визначає порядок збору, обробки, використання, зберігання та захисту персональних даних Користувачів під час використання Сайту та Ігрових сервісів Aventis Online (RP) (далі — «Проєкт»).
+
+Перед початком використання Проєкту Користувач зобов’язаний ознайомитися з умовами цієї Політики. Початок використання Сайту, реєстрація акаунта або використання Ігрового сервісу означає повну та безумовну згоду Користувача з умовами цієї Політики.
+
+Правовласник здійснює обробку персональних даних відповідно до законодавства України, зокрема Закону України «Про захист персональних даних», а також може враховувати положення міжнародних норм, включаючи GDPR, у випадку доступу до Проєкту з території інших держав.
+
+</p>
+                <p>1. ВИЗНАЧЕННЯ ТЕРМІНІВ
+У цій Політиці використовуються наступні терміни:
+
+Ігровий сервіс — програмний комплекс Aventis Online (RP), що включає клієнтську частину гри, серверну інфраструктуру, веб-сайт, внутрішні системи, механіки, а також усі оновлення та доповнення
+
+Користувач — фізична особа, яка здійснює доступ до Сайту або Ігрового сервісу з метою участі в ігровому процесі або використання функціоналу
+
+Персональні дані — будь-яка інформація, що прямо або опосередковано дозволяє ідентифікувати Користувача
+
+Акаунт — обліковий запис Користувача, створений для доступу до функціоналу Проєкту
+
+Правовласник — фізична особа або група осіб, що здійснює управління, адміністрування та розвиток Проєкту</p>
+<p>2. ПЕРЕЛІК ІНФОРМАЦІЇ, ЩО ЗБИРАЄТЬСЯ
+У процесі використання Проєкту Правовласник може отримувати як персоналізовану, так і технічну інформацію
+
+2.1 Інформація, що надається Користувачем
+електронна пошта
+
+ігровий нікнейм
+
+дані профілю
+
+повідомлення до служби підтримки
+
+інша інформація, яку Користувач надає добровільно
+
+Користувач несе відповідальність за достовірність наданих даних та зобов’язується підтримувати їх актуальність
+
+2.2 Інформація, що збирається автоматично
+IP-адреса
+
+інформація про пристрій та браузер
+
+операційна система
+
+журнали підключень (логи)
+
+дата та час входу
+
+тривалість сесій
+
+дії Користувача в грі
+
+Збір таких даних необхідний для стабільної роботи Проєкту, аналізу навантаження та забезпечення безпеки
+
+Правовласник не здійснює навмисного збору спеціальних категорій персональних даних</p>
+<p>3. ЦІЛІ ЗБОРУ ТА ОБРОБКИ ДАНИХ
+Обробка персональних даних здійснюється з наступними цілями
+
+забезпечення функціонування Ігрового сервісу
+
+реєстрація та ідентифікація Користувача
+
+надання доступу до функціоналу Проєкту
+
+підтримка RP-середовища
+
+виявлення порушень правил та запобігання шахрайству
+
+технічна підтримка та обробка звернень
+
+аналіз поведінки Користувачів
+
+покращення якості сервісу
+
+виконання вимог законодавства</p>
+<p>4. ПРАВОВІ ПІДСТАВИ ОБРОБКИ
+Обробка персональних даних здійснюється на підставі
+
+добровільної згоди Користувача
+
+необхідності виконання умов Угоди користувача
+
+законних інтересів Правовласника
+
+виконання вимог чинного законодавства</p>
+<p>5. ПЕРЕДАЧА ДАНИХ ТРЕТІМ ОСОБАМ
+Передача персональних даних третім особам допускається виключно у наступних випадках
+
+виконання вимог законодавства
+
+взаємодія з платіжними сервісами
+
+використання технічної інфраструктури (хостинг, аналітика)
+
+захист прав та безпеки Проєкту
+
+надання згоди Користувачем
+
+Правовласник не здійснює продаж або неконтрольоване розповсюдження персональних даних</p>
+<p>6. ВИКОРИСТАННЯ СТОРОННІХ СЕРВІСІВ
+У межах роботи Проєкту можуть використовуватися сторонні сервіси
+
+платіжні системи
+
+аналітичні сервіси
+
+системи авторизації
+
+комунікаційні платформи (наприклад Discord)
+
+Такі сервіси можуть обробляти частину інформації відповідно до власних політик конфіденційності</p>
+<p>7. COOKIE ТА АНАЛІТИКА
+Проєкт використовує cookie та подібні технології для
+
+забезпечення авторизації
+
+збереження налаштувань
+
+збору статистики
+
+аналізу поведінки Користувачів
+
+Користувач може обмежити або відключити використання cookie у налаштуваннях браузера</p>
+<p>8. СТРОКИ ЗБЕРІГАННЯ ДАНИХ
+Зберігання персональних даних здійснюється протягом строку, необхідного для досягнення цілей обробки
+
+дані акаунта — до моменту його видалення
+
+технічні дані — до 36 місяців
+
+дані про порушення — до 5 років
+
+Після завершення строку зберігання дані підлягають видаленню або знеособленню</p>
+<p>9. ЗАХИСТ ПЕРСОНАЛЬНИХ ДАНИХ
+Правовласник вживає необхідних технічних та організаційних заходів для захисту інформації
+
+обмеження доступу до даних
+
+використання систем безпеки
+
+захист від несанкціонованого доступу
+
+моніторинг систем
+
+Разом з тим Користувач усвідомлює, що передача даних через Інтернет не може бути повністю безпечною</p>
+<p>10. ПРАВА КОРИСТУВАЧА
+Користувач має право
+
+отримувати інформацію про обробку своїх даних
+
+вимагати виправлення або видалення
+
+обмежити обробку
+
+відкликати згоду
+
+звернутися до уповноважених органів</p>
+<p>11. ЗГОДА КОРИСТУВАЧА
+Користувач надає згоду на обробку персональних даних
+
+при реєстрації акаунта
+
+при використанні Сайту та Ігрового сервісу
+
+при зверненні до служби підтримки
+
+Згода діє протягом усього періоду використання Проєкту
+
+У разі незгоди з умовами Політики Користувач зобов’язаний припинити використання Проєкту</p>
+<p>12. ОБМЕЖЕННЯ ВІДПОВІДАЛЬНОСТІ
+Правовласник не несе відповідальності за
+
+дії третіх осіб
+
+втрату доступу до акаунта з вини Користувача
+
+розголошення даних самим Користувачем
+
+технічні збої поза контролем
+
+</p>
+<p>13. ЗМІНИ ДО ПОЛІТИКИ
+Правовласник має право змінювати умови цієї Політики без попереднього повідомлення
+
+Оновлена версія набирає чинності з моменту її публікації
+
+Продовження використання Проєкту означає згоду з новою редакцією</p>
+<p>14. КОНТАКТИ
+З усіх питань, пов’язаних з обробкою персональних даних
+
+<a href="cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5637203338223f257839383a3f383316313b373f3a7835393b">[email&#160;protected]</a></p>
+
+                <br><br><br><br><br><br><br><br><br><br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="/">
+                    <img src="images/logo.svg" alt="Aventis RP Logo" class="footer-logo-img">
+                </a>
+            </div>
+            
+            <div class="footer-info-center">
+                <div class="footer-column">
+                    <h3>Навігація</h3>
+                    <a href="clicks.php">Соц. мережі</a>
+                    <a href="#">Форум</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Інформація</h3>
+                    <a href="privacy-policy.html">Політика конфіденційності</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакти</h3>
+                    <a href="cdn-cgi/l/email-protection#29485f4c475d405a0746474540474c694e44484045074a4644"><span class="__cf_email__" data-cfemail="cbaabdaea5bfa2b8e5a4a5a7a2a5ae8baca6aaa2a7e5a8a4a6">[email&#160;protected]</span></a>
+                    <a href="https://t.me/aventis_support_bot">Технічна підтримка</a>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://youtube.com/@aventisroleplay-01" class="social-btn">
+                    <img src="images/youtube.svg" alt="YouTube"> <span>YouTube</span>
+                </a>
+                <a href="https://www.tiktok.com/@aventis.roleplay7" class="social-btn">
+                    <img src="images/tiktok.svg" alt="TikTok"> <span>TikTok</span>
+                </a>
+                <a href="https://t.me/aventisonlineua" class="social-btn">
+                    <img src="images/telegram.svg" alt="Telegram"> <span>Telegram</span>
+                </a>
+                <a href="https://www.instagram.com/aventis.rp777" class="social-btn">
+                    <img src="images/instagram.svg" alt="Instagram"> <span>Instagram</span>
+                </a>
+                <a href="https://discord.gg/5j55j7DVWH" class="social-btn" style="grid-column: span 2;">
+                    <img src="images/discord.svg" alt="Discord"> <span>Discord</span>
+                </a>
+            </div>
+
+            <p class="footer-main-desc">
+                Aventis RP — це сучасний український RolePlay проєкт на платформі MTA, створений командою ентузіастів.<br>
+                Вас чекає динамічний ігровий світ, де кожна дія впливає на розвиток персонажа, а взаємодія з іншими гравцями формує унікальний ігровий досвід.
+            </p>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Aventis RP. Всі права захищено.</p>
+            <a href="https://t.me/aventis_support_bot" class="problem-report">
+                <span>Виникли проблеми з грою?</span>
+                <img src="images/telegram.svg" style="width: 18px;" alt="TG">
+            </a>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

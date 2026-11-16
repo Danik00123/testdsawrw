@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Особистий кабінет — AVENTIS ONLINE</title>
+    <meta name="description" content="Особистий кабінет гравця Aventis RP: рівень, досвід, фракція та рулетка з призами.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/globals.css">
+    <link rel="icon" href="images/logg.svg" type="image/svg+xml">
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio"></script>
+    <link rel="stylesheet" href="css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background: #0a0a10;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+        .cabinet-nav {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            background: rgba(10,10,16,0.9);
+            backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .cabinet-nav .logo-img { height: 42px; }
+        .cabinet-wrap { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+
+        /* Profile card */
+        .profile-card {
+            background: linear-gradient(160deg, #16161f, #0d0d14);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .avatar {
+            width: 96px; height: 96px; border-radius: 24px;
+            background: linear-gradient(135deg, #f59e0b, #b45309);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 800;
+            color: #0a0a10;
+            box-shadow: 0 10px 40px rgba(245,158,11,0.3);
+        }
+        .profile-name { font-size: 1.6rem; font-weight: 800; font-family: 'Montserrat', sans-serif; }
+        .profile-sub { color: rgba(255,255,255,0.55); font-size: 0.9rem; margin-top: 0.2rem; }
+        .faction-badge {
+            display: inline-block; margin-top: 0.6rem;
+            padding: 0.3rem 0.9rem; border-radius: 999px;
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px;
+            border: 1px solid currentColor;
+            background: rgba(255,255,255,0.04);
+        }
+        .stat-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem; margin-top: 1.5rem;
+        }
+        .stat-box {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px; padding: 1rem 1.2rem;
+        }
+        .stat-box .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; }
+        .stat-box .stat-value { font-size: 1.4rem; font-weight: 800; font-family: 'Orbitron', sans-serif; margin-top: 0.3rem; color: #f59e0b; }
+        .exp-bar {
+            margin-top: 1.5rem;
+            height: 14px; border-radius: 999px;
+            background: rgba(255,255,255,0.07); overflow: hidden;
+        }
+        .exp-fill {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+            border-radius: 999px; transition: width 1s ease;
+        }
+        .exp-text { font-size: 0.8rem; color: rgba(255,255,255,0.55); margin-top: 0.4rem; }
+
+        /* Roulette */
+        .roulette-section {
+            margin-top: 2.5rem;
+            background: linear-gradient(160deg, #16161f, #0d0d14);
+            border: 1px solid rgba(245,158,11,0.25);
+            border-radius: 24px;
+            padding: 2rem;
+        }
+        .roulette-title {
+            font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.4rem;
+            display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.3rem;
+        }
+        .roulette-sub { color: rgba(255,255,255,0.55); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+        .roulette-window {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: #0d0d14;
+            height: 110px;
+            display: flex; align-items: center;
+        }
+        .roulette-window::before, .roulette-window::after {
+            content: '';
+            position: absolute; top: 0; bottom: 0; width: 90px; z-index: 3;
+            pointer-events: none;
+        }
+        .roulette-window::before {
+            left: 0;
+            background: linear-gradient(90deg, rgba(13,13,20,0.98), transparent);
+        }
+        .roulette-window::after {
+            right: 0;
+            background: linear-gradient(-90deg, rgba(13,13,20,0.98), transparent);
+        }
+        .roulette-pointer {
+            position: absolute; left: 50%; top: 0; bottom: 0; width: 3px;
+            background: #f59e0b; z-index: 4; transform: translateX(-50%);
+            box-shadow: 0 0 16px #f59e0b;
+        }
+        .roulette-pointer::before {
+            content: ''; position: absolute; top: -2px; left: 50%;
+            transform: translateX(-50%);
+            border-left: 9px solid transparent; border-right: 9px solid transparent;
+            border-top: 12px solid #f59e0b;
+        }
+        .roulette-strip {
+            display: flex; gap: 10px;
+            padding: 0 12px;
+            will-change: transform;
+        }
+        .roulette-tile {
+            flex: 0 0 auto;
+            width: 130px; height: 86px;
+            border-radius: 14px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            font-family: 'Orbitron', sans-serif; font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: linear-gradient(160deg, #1c1c28, #12121b);
+        }
+        .roulette-tile .tile-prize { font-size: 1.15rem; color: #fff; }
+        .roulette-tile .tile-sub { font-size: 0.7rem; color: rgba(255,255,255,0.45); margin-top: 4px; letter-spacing: 1px; }
+        .roulette-tile.tile-jackpot { border-color: #f59e0b; background: linear-gradient(160deg, #3a2c05, #1c1403); }
+        .roulette-tile.tile-jackpot .tile-prize { color: #fbbf24; }
+        .roulette-tile.tile-bad { border-color: rgba(248,113,113,0.4); }
+        .roulette-tile.tile-bad .tile-prize { color: #f87171; }
+
+        .roulette-controls {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;
+        }
+        .spin-btn {
+            font-family: 'Orbitron', sans-serif; font-weight: 800; letter-spacing: 1px;
+            padding: 0.9rem 2.2rem; border-radius: 14px; border: none; cursor: pointer;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #0a0a10; font-size: 1rem;
+            transition: transform .15s, filter .2s;
+        }
+        .spin-btn:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-1px); }
+        .spin-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .roulette-result {
+            font-size: 1rem; font-weight: 700; min-height: 1.4em;
+        }
+        .roulette-result.win { color: #4ade80; }
+        .roulette-result.lose { color: #f87171; }
+
+        .history-title { margin-top: 2rem; font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.7); }
+        .history-list { margin-top: 0.8rem; display: flex; flex-direction: column; gap: 0.4rem; }
+        .history-item {
+            display: flex; justify-content: space-between;
+            padding: 0.6rem 1rem; border-radius: 10px;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.9rem;
+        }
+        .history-item .h-amount { font-family: 'Orbitron', sans-serif; font-weight: 700; }
+        .history-item .h-amount.pos { color: #4ade80; }
+        .history-item .h-amount.neg { color: #f87171; }
+
+        .logout-btn {
+            background: none; border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.7); padding: 0.5rem 1.2rem; border-radius: 10px;
+            cursor: pointer; font-size: 0.85rem; transition: all .2s;
+        }
+        .logout-btn:hover { border-color: #f87171; color: #f87171; }
+
+        .cabinet-loading { text-align: center; padding: 4rem 0; color: rgba(255,255,255,0.6); }
+
+        @media (max-width: 640px) {
+            .profile-card { grid-template-columns: 1fr; text-align: center; }
+            .avatar { margin: 0 auto; }
+            .roulette-tile { width: 110px; height: 78px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="cabinet-nav">
+    <a href="index.html"><img src="images/logo.svg" alt="Aventis RP" class="logo-img"></a>
+    <div style="display:flex; align-items:center; gap:1rem;">
+        <span id="nav-email" style="color:rgba(255,255,255,0.5); font-size:0.85rem;"></span>
+        <button class="logout-btn" id="logout-btn">Вийти</button>
+    </div>
+</nav>
+
+<div class="cabinet-wrap">
+
+    <div id="loading" class="cabinet-loading">
+        <i class="fa-solid fa-circle-notch fa-spin" style="font-size:2rem; color:#f59e0b;"></i>
+        <p style="margin-top:1rem;">Завантаження кабінету...</p>
+    </div>
+
+    <div id="cabinet-content" style="display:none;">
+
+        <!-- Profile -->
+        <div class="profile-card reveal">
+            <div class="avatar" id="avatar-letter">?</div>
+            <div>
+                <div class="profile-name" id="p-nickname">—</div>
+                <div class="profile-sub">ID: <span id="p-id">—</span> · Акаунт з <span id="p-created">—</span></div>
+                <span class="faction-badge" id="p-faction" style="color:#6b7280;">Без фракції</span>
+            </div>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat-box">
+                <div class="stat-label">Рівень</div>
+                <div class="stat-value" id="p-level">1</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Баланс</div>
+                <div class="stat-value" id="p-balance">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Досвід</div>
+                <div class="stat-value" id="p-exp">0</div>
+            </div>
+        </div>
+
+        <div class="exp-bar"><div class="exp-fill" id="exp-fill"></div></div>
+        <div class="exp-text" id="exp-text"></div>
+
+        <!-- Roulette -->
+        <div class="roulette-section">
+            <div class="roulette-title">
+                <i class="fa-solid fa-dharmachakra" style="color:#f59e0b;"></i>
+                Рулетка удачі
+            </div>
+            <div class="roulette-sub">Вартість спіну: <strong style="color:#f59e0b;">100 000</strong> ігрових грошей. Крути та вигравай!</div>
+
+            <div class="roulette-window">
+                <div class="roulette-strip" id="roulette-strip"></div>
+                <div class="roulette-pointer"></div>
+            </div>
+
+            <div class="roulette-controls">
+                <button class="spin-btn" id="spin-btn">КРУТИТИ · 100 000</button>
+                <div class="roulette-result" id="roulette-result"></div>
+            </div>
+
+            <div class="history-title">Останні спіни</div>
+            <div class="history-list" id="history-list">
+                <div style="color:rgba(255,255,255,0.4); font-size:0.85rem;">Історія з'явиться після перших спінів</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="js/cabinet.js"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>
